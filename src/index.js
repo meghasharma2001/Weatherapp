@@ -28,11 +28,11 @@ app.get("/" , (req,res)=>{
 app.get("/weather" , (req,res)=>{
     res.render("weather");
 });
-// app.get("*" , (req,res) =>{
-//     res.render("404error" , {
-//         errmsg:"page not found try again"
-//     });
-// });
+app.get("*" , (req,res) =>{
+    res.render("404error" , {
+        errmsg:"page not found please try again"
+    });
+});
 
 app.listen(port , ()=>{
     console.log(`listen at port no. ${port}`);
