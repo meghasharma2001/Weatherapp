@@ -1,0 +1,148 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Caveat:wght@600&family=DM+Sans:ital@1&family=IBM+Plex+Mono:ital,wght@1,100&family=PT+Serif+Caption&family=Playpen+Sans:wght@300&family=Quicksand:wght@600&display=swap');
+  
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Playpen",serif ;
+}
+
+:root{
+  --main-bg:grey;
+  --main-color:#0097e6;
+}
+html{
+   font-size:62.5%;   /*make wsite responsive 1rem= 10px */
+}
+.row{
+   margin:0 ; /*wsite horizontal scroll bar go */
+}
+.carousel-inner{
+  margin:0;
+}
+.main_menu{
+  background-color:var(--main-bg);
+}
+.navbar{
+  color:#fff;
+  background-color:var(--main-bg);
+ padding:2rem 0rem ;   /*give space bet nav item like home etc*/
+ height:10vh;  /* c */
+
+}
+.navbar a{
+  color:#fff ;   /*  home, about, megha color white */
+  font-size: 1.8rem;
+
+}
+.navbar-nav{
+  margin-right:30px;
+}
+.navbar-toggler{
+  background-color: gray; /* ... */
+}
+.navbar li{
+  margin-left:2rem;         /*space between home about*/
+}
+.navbar a:hover{
+  color:var(--main-color);
+}
+.fa-snowflake{
+  padding:0 1rem;
+}
+.navbar-brand{
+  margin-left:20px;
+  
+}
+@keyframes rotate {
+  0%{
+    transform :rotate(0deg);
+  }
+  100%{
+    transform :rotate(360deg);
+  }
+}
+.navbar .navbar-brand i .fa-snowflake{
+  transition : All linear; /*linear => speed*/
+  animation:rotate 2s linear infinte; /* rotate => animation name , 2s =>duration , linear => timingfunc*/
+  color : var( --main-color); /*flower color change to blue*/
+}
+
+
+/* main header left and right give same height =>700px or 70rem */
+.main_header_left {
+  height:80vh;
+  display:flex;
+  justify-content:center;
+  flex-direction :column; /*welcome to weather app etc come in one column*/
+  align-items:  flex-start;
+}
+
+.main_header_right{
+  height : 80vh;
+  display:flex;
+  flex-direction :column;
+  justify-content:center;
+  align-items:flex-start;
+}
+.main_header_left p{
+  font-size:2rem;
+}
+.main_header_left h1{
+  font-size:4rem;
+  margin:1rem 0 4rem 0;
+  text-transform:capitalize;
+}
+.main_header_left .text_clr{
+  color:var(--main-color);
+}
+.main_header_left button{
+  border:none;
+  padding : 0.8rem 1.8rem;
+  font-size:1.4rem;
+  border-radius:2rem;
+  text-transform:uppercase;
+   box-shadow:0 8px 6px -6px black  ;/* horizontal obsect=>0 , move below 8 px , blur => 6px ,spread => -6px */
+   outline : none;  /*when click on button then black outline box not show */
+}
+.main_header_left button:hover{
+   box-shadow:0 8px 6px -6px var(--main-color) ; /*when hover then black shodow of button change in blue shadow */
+}
+
+/* footer style */
+footer{
+  width:100%;
+  background-color: var(--main-bg);
+  height:10vh;
+}
+footer p{
+  margin:0;
+  text-align:center;
+  color:#fff;
+  line-height:7rem;
+  font-size:2rem;  /*1.4 rem*/
+  margin-top:auto;
+}
+body{
+  height:100vh;
+  display:flex; /* menu ,middle content ,footer come in 1 row and 3column  (give property margin-top :auto  which put footer always in bottom)*/
+  flex-direction:column; /*  menu ,middle content ,footer come in 3 row and 1 column */
+}
+
+@media (max-width :768px){
+  .main_header_left{
+    height:auto;
+    margin:5rem 0;
+  }
+  .main_header_right{
+    height:auto;
+    margin-top:3rem;
+  }
+}
+
+/* style about page */
+.main_header_right figure img{
+   filter:drop-shadow(10 5.5rem 100rem rgba(0,0,0,0.3)); /*filter property in this drop shadow i.e alternative of box-shadow*/
+  
+}

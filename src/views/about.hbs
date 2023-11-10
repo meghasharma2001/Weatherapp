@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    {{!-- <link rel="stylesheet" href="C:\Users\MeghaSharma\OneDrive\Desktop\webapp\expressjs\weatherapp\src\views\images\girl.jpg"> --}}
+      {{>style}}
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1>about static file</h1> -->
+
+    {{>navbar}}
+
+      <!-- main header page -->
+
+      <div class = "container-fluid main-header">
+        <div class = "row">
+            <div class = "col-md-10  col-12 mx-auto">
+
+                <div class = "row">
+                    <!-- left side div -->
+                     <div class ="col-md-6 col-12 main_header_right align-items-center">
+                        <!--this img first come in dom so img 1st show -->
+                       
+                        <!-- img-fluid => img remain responsive always  ,,using  <figure> tag we can change img caption -->
+                        
+                       <img src = "images/girl.jpg" alt="megha"  id ="imag" class="img-fluid" title="megha sharma">
+                      
+                      
+                     
+                    </div>
+                    <!-- right side div -->
+
+                    <div class = "col-md-6 col-12 main_header_left aboutinfo ">
+                      <span>  
+                      <p>welcome to weather app</p>
+                      <h1>I am a <span class = "text_clr">Mern stack developer</span>in Jaipur</h1>
+                      <a href ="#" target = "_megha" ><button>About Me</button></a></span>
+                    </div>
+                   
+                   
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    {{>footer}}
+                    <script>
+                      
+                      const imgpath= ["C:/Users/Megha Sharma/OneDrive/Desktop/webapp/expressjs/weatherapp"].join( "../../public/img/girl.png" );
+                        console.log(imgpath);
+                        const ig = document.getElementById("imag");
+                        imag.innerHTML = imgpath;
+                       
+                        {{!-- app.use(express.static(imgpath)); --}}
+                    </script>
+    
+</body>
+</html>

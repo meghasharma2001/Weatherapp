@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+   
+    <title>Document</title>
+     {{>style}}
+</head>
+<body>
+    {{>navbar}}
+     
+     {{!-- main header --}}
+     <div class = "container-fluid main-header">
+        <div class ="row">
+            <div class ="col-md-10 col-12 mx-auto">
+                <div class="main_content">
+                    <form class ="temp_form">
+                         <input type = "text" id="cityname" placeholder="enter your city name" autocomplete="off">{{!--user write city here , autocomplete=> once user write not show many times--}}
+                        <input type = "submit" value="search" id ="submitbutton">
+                    </form>
+                </div>
+                <div class="tempInformation">
+                    <div class="top_layer">
+                        <p id ="day" style="padding-top:95px;">Tuesday</p>
+                         
+                        <p id="today_date" class="date" style="padding-top:95px;"> oct</p>  {{!--get it through JS --}}
+                       
+                        <div class = "main_layer">
+                            <p id="citysname"  ></p>
+                          <div class = "middlelayer " id="hide"> {{!--  datahide =>   class name if user write proper cityname then only o/p show --}}
+                                <p id ="temp"><span id ="tempreal_val" ></span><sup>0</sup><span>C</span></p>
+                                {{!-- <p  id ="tempreal_val">{%tempr%}<span><sup>o</sup>c</span></p> --}}
+                                {{!-- <p  id ="tempreal_val"><span id="temp">&deg;C</span></p> --}}
+                                <p id ="temp_status"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+       
+
+     <script>
+        const cityname = document.getElementById("cityname");
+const submitbtn = document.getElementById("submitbutton");
+const citysname = document.getElementById("citysname");
+const temp_real_val = document.getElementById("tempreal_val");
+const tempstatus = document.getElementById("temp_status");
+const middlelayers =document.querySelector(".middlelayer");
+const datahide = document.getElementById("hide")
+const temps = document.getElementById("temp");
+
+const currentDay = ()=>{
+           let weekday = new Array("sunday","monday", "tuesday" ,"wednesday" ,"thursday", "friday", "saturday");
+           let months = new Array("jan","feb","march","april","may","june","july","aug","sept","oct","nov","dec");
+           const currentTime = new Date();
+            days = weekday[ currentTime.getDay()]
+            Months = months[currentTime.getMonth()];
+            Date = currentTime.getDate();
+            console.log(Date);
+            let day = document.getElementById("day");
+            let month = document.getElementById("today_date");
+            let dates = document.getElementsByClassName("date");
+            day.innerText=days;
+            dates.innerText= Date;
+            month.innerText= Months;
+            
+        };
+        currentDay();
+
+
+ 
+const getinfo = async(event)=>{
+   
+    event.preventDefault(); //once form give o/p it come to org state and reload page and give  querystring   /weather?
+    const cityval = cityname.value;  //whatever user write we get here
+     console.log(cityval);
+  
+    if(cityname.value === " ")
+    {
+        citysname.innerText = "plz write name before search";
+        datahide.classList.add("middlelayers");
+    }
+
+    else{
+        //if error come in url we  can catch it
+       
+   
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityname.value}&units=metric&appid=f222774470a98e3aff94a0778393f257`;
+            const response =await fetch (url);
+            const data=await response.json(); //convert response into obj
+            
+          
+            const arrdata = [data];//convert data into array
+            citysname.innerText =`${arrdata[0].name},${arrdata[0].sys.country}`;//show data "pune,in" together here
+            temp_real_val.innerText = arrdata[0].main.temp;  //temp_real_val => get temp here
+      
+            const tempMood = arrdata[0].weather[0].main;
+            console.log(tempMood);
+            const draw=tempMood;
+            console.log(draw);
+
+            if(tempMood ==='Clear'){
+                tempstatus.innerText = "<i class='fa fa-cloud' aria-hidden='true'></i>"
+            }
+            if(tempMood === 'Rain'){
+                 
+                    tempstatus.innerText = "<i class='fa-duotone fa-cloud-rain'></i>"
+            } 
+            if(tempMood === 'Clouds'){
+                tempstatus.innerText = "<i class='fa fa-cloud' aria-hidden='true'></i>"
+            }
+            else(tempMood === 'sun')
+            {
+                tempstatus.innerHTML = "<i class='fa-light fa-brightness' style='background-color:yellow;'></i>"
+            }
+             datahide.classList.remove("middlelayers");
+       
+    }
+    
+   
+   
+}
+
+  
+
+
+
+ submitbtn.addEventListener("click",getinfo); //in weather.hbs ,submitbtn => id of search btn, click => if click search button then call function "getinfo" define above addEventListener
+        {{!-- const currentDay = ()=>{
+           let weekday = new Array("sunday","monday", "tuesday" ,"wednesday" ,"thursday", "friday", "saturday");
+           let months = new Array("jan","feb","march","april","may","june","july","aug","sept","oct","nov","dec");
+           const currentTime = new Date();
+            days = weekday[ currentTime.getDay()]
+            Months = months[currentTime.getMonth()];
+            let day = document.getElementById("day");
+            let month = document.getElementById("today_date");
+            day.innerText=days;
+            month.innerText=Months;
+        };
+        currentDay(); --}}
+
+
+     </script>
+
+   {{>footer}}
+</body>
+</html>
+{{!-- https://api.openweathermap.org/data/2.5/weather?q=jaipur&appid=f222774470a98e3aff94a0778393f257 --}}
