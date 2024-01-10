@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+    <title>Document</title>
+
+</head>
+
+<body>
+
+
+    {{>navbar}}
+
+    <p style="font-size:20px; margin-top:15px; margin-left:45vw; color:aquamarine;">welcome to weather app</p>
+    <h1 style="margin-left :40vw;">{{errmsg}}</h1>
+    <div class="container-fluid main-header">
+        <div class="row">
+            <div class="col-md-10  col-12 mx-auto">
+
+                <div class="row">
+
+                    <div class="col-md-6 col-12 main_header_right align-items-center">
+
+
+                        <figure class="errimg align-items-center">
+
+                            <div class=img>
+                                <img src="images/errimg.jpg" alt="megha" class="img-fluid" title="megha sharma">
+
+                            </div>
+
+                        </figure>
+
+                        <a href="/"><button
+                                style="border-radius:15px; font-size:25px; background-color:black; color:aquamarine; margin-left:445px;">
+                                go back</button></a>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    {{>footer}}
+</body>
+
+</html>
